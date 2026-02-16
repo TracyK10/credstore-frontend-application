@@ -25,7 +25,7 @@ export const Select: React.FC<SelectProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
+        className="w-full px-4 py-3 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none appearance-none cursor-pointer"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

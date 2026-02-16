@@ -38,9 +38,9 @@ export const ValidatedInput: React.FC<ValidatedInputProps> = ({
           onBlur={onBlur}
           placeholder={placeholder}
           disabled={disabled}
-          className={`w-full px-4 py-3 bg-input-bg border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary transition-all ${
-            showCheckmark ? "pr-12 border-success" : "border-input-border"
-          } ${errorMessage && !isValid ? "border-red-500" : ""}`}
+          className={`w-full px-4 py-3 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none transition-all ${
+            showCheckmark ? "pr-12" : ""
+          } ${errorMessage && !isValid ? "ring-2 ring-red-500" : ""}`}
         />
         {showCheckmark && (
           <div className="absolute right-4 top-1/2 -translate-y-1/2">

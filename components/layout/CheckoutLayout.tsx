@@ -20,7 +20,7 @@ export const CheckoutLayout: React.FC<CheckoutLayoutProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="bg-[#F7FAFC] rounded-lg p-8">
+            <div className="bg-[#F7FAFC] rounded-lg px-16 py-8">
               {children}
             </div>
           </div>
