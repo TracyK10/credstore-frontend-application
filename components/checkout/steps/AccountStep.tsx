@@ -84,10 +84,10 @@ export const AccountStep: React.FC = () => {
 
       <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
-          onClick={() => {}}
+          onClick={() => window.location.href = '/'}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
         >
-          {t("common.cancelOrder")}
+          Cancel order
         </button>
         
         <Button

@@ -85,7 +85,7 @@ export const OrderSummary: React.FC = () => {
             type="text"
             value={discountCode}
             onChange={(e) => setDiscountCode(e.target.value)}
-            className="flex-1 px-4 py-2 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary"
+            className="flex-1 px-4 py-2 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none"
           />
           <button
             onClick={handleApplyDiscount}

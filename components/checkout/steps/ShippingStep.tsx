@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { validateRequired, validatePostcode } from "@/lib/validation";
 
 export const ShippingStep: React.FC = () => {
-  const { shippingData, updateShippingData, setCurrentStep } = useCheckout();
+  const { shippingData, updateShippingData, prevStep, nextStep } = useCheckout();
   const { t } = useTranslation();
 
   const [savedAddress, setSavedAddress] = useState(shippingData.savedAddress);
@@ -75,7 +75,7 @@ export const ShippingStep: React.FC = () => {
     });
     
     // Move to next step
-    setCurrentStep(3);
+    nextStep();
   };
 
   const isFormValid = firstLineValid && streetNameValid && postcodeValid;
@@ -138,10 +138,10 @@ export const ShippingStep: React.FC = () => {
 
       <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
-          onClick={() => setCurrentStep(1)}
+          onClick={prevStep}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
         >
-          {t("common.cancelOrder")}
+          Cancel order
         </button>
 
         <Button

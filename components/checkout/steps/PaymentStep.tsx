@@ -15,7 +15,7 @@ import {
 } from "@/lib/validation";
 
 export const PaymentStep: React.FC = () => {
-  const { paymentData, updatePaymentData, setCurrentStep } = useCheckout();
+  const { paymentData, updatePaymentData, prevStep, resetCheckout } = useCheckout();
   const { t } = useTranslation();
 
   const [savedCard, setSavedCard] = useState(paymentData.savedCard);
@@ -25,6 +25,7 @@ export const PaymentStep: React.FC = () => {
   const [expirationYear, setExpirationYear] = useState(paymentData.expirationYear);
   const [cvc, setCvc] = useState(paymentData.cvc);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const [nameValid, setNameValid] = useState(false);
   const [cardNumberValid, setCardNumberValid] = useState(false);
@@ -160,8 +161,11 @@ export const PaymentStep: React.FC = () => {
       const data = await response.json();
       
       if (data.success) {
-        alert("Order completed successfully!");
-        // Reset checkout or redirect
+        setSuccess(true);
+        setTimeout(() => {
+          alert("Order completed successfully!");
+          resetCheckout();
+        }, 1500);
       } else {
         alert("Order failed: " + data.message);
       }
@@ -169,7 +173,9 @@ export const PaymentStep: React.FC = () => {
       alert("Error completing order");
       console.error(error);
     } finally {
-      setLoading(false);
+      if (!success) {
+        setLoading(false);
+      }
     }
   };
 
@@ -272,19 +278,28 @@ export const PaymentStep: React.FC = () => {
 
       <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
-          onClick={() => setCurrentStep(2)}
+          onClick={prevStep}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
         >
-          {t("common.cancelOrder")}
+          Cancel order
         </button>
 
         <Button
-          variant="primary"
+          variant={success ? "success" : "primary"}
           onClick={handleComplete}
-          disabled={!isFormValid}
+          disabled={!isFormValid || loading || success}
           loading={loading}
         >
-          {t("payment.completeButton")}
+          {success ? (
+            <>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+              </svg>
+              Success
+            </>
+          ) : (
+            "Complete order"
+          )}
         </Button>
       </div>
     </div>

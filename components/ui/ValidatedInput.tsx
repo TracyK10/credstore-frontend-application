@@ -49,7 +49,7 @@ export const ValidatedInput: React.FC<ValidatedInputProps> = ({
               fill="currentColor"
               viewBox="0 0 20 20"
             >
-              <circle cx="10" cy="10" r="10" fill="black" />
+              <circle cx="10" cy="10" r="10" fill="#3182CE" />
               <path
                 fill="white"
                 d="M14.707 7.293a1 1 0 00-1.414 0L9 11.586 6.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l5-5a1 1 0 000-1.414z"

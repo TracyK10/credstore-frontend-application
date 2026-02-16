@@ -5,7 +5,7 @@ import React from "react";
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "success";
   disabled?: boolean;
   loading?: boolean;
   type?: "button" | "submit";
@@ -26,6 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
   const variantClasses = {
     primary: `bg-primary text-white hover:bg-primary-hover disabled:bg-gray-300 disabled:cursor-not-allowed`,
     secondary: `bg-white text-text-primary border border-input-border hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed`,
+    success: `bg-green-600 text-white disabled:cursor-not-allowed`,
   };
 
   const widthClass = fullWidth ? "w-full" : "";
