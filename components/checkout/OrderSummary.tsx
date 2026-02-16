@@ -118,16 +118,16 @@ export const OrderSummary: React.FC = () => {
               : formatCurrency(orderSummary.shipping)}
           </span>
         </div>
-      </div>
-
-      {/* Total */}
-      <div className="flex justify-between items-center mt-4 pt-4 border-t border-border">
-        <span className="text-lg font-semibold text-text-primary">
-          {t("orderSummary.total")}
-        </span>
-        <span className="text-2xl font-bold text-text-primary">
-          {formatCurrency(orderSummary.total)}
-        </span>
+        
+        {/* Total - No divider */}
+        <div className="flex justify-between items-center pt-2">
+          <span className="text-lg font-semibold text-text-primary">
+            {t("orderSummary.total")}
+          </span>
+          <span className="text-2xl font-bold text-text-primary">
+            {formatCurrency(orderSummary.total)}
+          </span>
+        </div>
       </div>
     </div>
   );
