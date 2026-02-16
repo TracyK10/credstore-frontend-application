@@ -81,7 +81,7 @@ export const ShippingStep: React.FC = () => {
   const isFormValid = firstLineValid && streetNameValid && postcodeValid;
 
   return (
-    <div className="bg-[#F7FAFC] p-8 rounded-lg">
+    <div>
       <h2 className="text-2xl font-semibold text-text-primary mb-6">
         {t("shipping.title")}
       </h2>

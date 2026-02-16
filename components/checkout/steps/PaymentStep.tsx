@@ -166,7 +166,7 @@ export const PaymentStep: React.FC = () => {
   const isFormValid = nameValid && cardNumberValid && monthValid && yearValid && cvcValid;
 
   return (
-    <div className="bg-[#F7FAFC] p-8 rounded-lg">
+    <div>
       <h2 className="text-2xl font-semibold text-text-primary mb-6">
         {t("payment.title")}
       </h2>
