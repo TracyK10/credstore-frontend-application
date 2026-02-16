@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export const Header: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, locale, setLocale } = useTranslation();
 
   return (
     <header className="bg-white border-b border-border">
@@ -46,6 +46,25 @@ export const Header: React.FC = () => {
 
           {/* Account and Cart */}
           <div className="flex items-center gap-6">
+            {/* Language Toggle */}
+            <button
+              onClick={() => setLocale(locale === "en" ? "sw" : "en")}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-gray-300 hover:border-primary transition-colors group"
+              title={locale === "en" ? "Switch to Kiswahili" : "Switch to English"}
+            >
+              <svg 
+                className="w-4 h-4 text-gray-600 group-hover:text-primary transition-colors" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+              </svg>
+              <span className="text-sm font-medium text-gray-700 group-hover:text-primary transition-colors">
+                {locale === "en" ? "EN" : "SW"}
+              </span>
+            </button>
+
             <div className="flex items-center gap-2 cursor-pointer group">
               <span className="text-text-primary group-hover:text-primary transition-colors">
                 {t("navigation.account")}

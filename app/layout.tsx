@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CheckoutProvider } from "@/context/CheckoutContext";
+import { TranslationProvider } from "@/contexts/TranslationContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CheckoutProvider>{children}</CheckoutProvider>
+        <TranslationProvider>
+          <CheckoutProvider>{children}</CheckoutProvider>
+        </TranslationProvider>
       </body>
     </html>
   );
