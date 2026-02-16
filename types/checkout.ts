@@ -42,6 +42,8 @@ export interface CheckoutState {
 
 export interface CheckoutContextType extends CheckoutState {
   setCurrentStep: (step: 1 | 2 | 3) => void;
+  nextStep: () => void;
+  prevStep: () => void;
   updateAccountData: (data: Partial<AccountData>) => void;
   updateShippingData: (data: Partial<ShippingData>) => void;
   updatePaymentData: (data: Partial<PaymentData>) => void;

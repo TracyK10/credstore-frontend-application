@@ -52,6 +52,20 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
     setState((prev) => ({ ...prev, currentStep: step }));
   };
 
+  const nextStep = () => {
+    setState((prev) => ({
+      ...prev,
+      currentStep: Math.min(3, prev.currentStep + 1) as 1 | 2 | 3,
+    }));
+  };
+
+  const prevStep = () => {
+    setState((prev) => ({
+      ...prev,
+      currentStep: Math.max(1, prev.currentStep - 1) as 1 | 2 | 3,
+    }));
+  };
+
   const updateAccountData = (data: Partial<AccountData>) => {
     setState((prev) => ({
       ...prev,
@@ -87,6 +101,8 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
   const value: CheckoutContextType = {
     ...state,
     setCurrentStep,
+    nextStep,
+    prevStep,
     updateAccountData,
     updateShippingData,
     updatePaymentData,
