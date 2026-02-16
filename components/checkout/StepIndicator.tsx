@@ -17,13 +17,13 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
   ];
 
   return (
-    <div className="flex items-center justify-center md:justify-start gap-4 mb-8">
+    <div className="flex items-center justify-center gap-0 mb-8">
       {steps.map((step, index) => (
         <React.Fragment key={step.number}>
-          <div className="flex items-center gap-2">
-            {/* Step circle */}
+          <div className="flex flex-col items-center gap-2">
+            {/* Step circle - positioned as node between lines */}
             <div
-              className={`flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all ${
+              className={`flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all ${
                 step.number < currentStep
                   ? "bg-black border-black"
                   : step.number === currentStep
@@ -48,7 +48,7 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
 
             {/* Step label */}
             <span
-              className={`text-sm font-medium ${
+              className={`text-sm font-medium whitespace-nowrap ${
                 step.number === currentStep
                   ? "text-[#3182CE]"
                   : step.number < currentStep
@@ -60,11 +60,11 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
             </span>
           </div>
 
-          {/* Connecting line */}
+          {/* Connecting line - between circles */}
           {index < steps.length - 1 && (
             <div
-              className={`h-0.5 w-12 transition-all ${
-                step.number < currentStep ? "bg-gray-400" : "bg-gray-300"
+              className={`h-0.5 w-16 mb-7 transition-all ${
+                step.number < currentStep ? "bg-[#3182CE]" : "bg-gray-300"
               }`}
             />
           )}

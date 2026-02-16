@@ -43,32 +43,36 @@ export const OrderSummary: React.FC = () => {
       </div>
 
       {/* Product Details */}
-      <div className="mb-6">
-        <h3 className="text-lg font-medium text-text-primary mb-2">
-          {orderSummary.productName}
-        </h3>
+      <div className="mb-4">
+        {/* Product Name and Quantity on Same Line */}
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-lg font-medium text-text-primary">
+            {orderSummary.productName}
+          </h3>
+          
+          {/* Quantity Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handleQuantityChange(-1)}
+              className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
+            >
+              <span className="text-base text-text-primary font-medium">−</span>
+            </button>
+            <span className="text-base font-medium text-text-primary w-6 text-center">
+              {orderSummary.quantity}
+            </span>
+            <button
+              onClick={() => handleQuantityChange(1)}
+              className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
+            >
+              <span className="text-base text-text-primary font-medium">+</span>
+            </button>
+          </div>
+        </div>
+        
         <p className="text-2xl font-bold text-text-primary mb-4">
           {formatCurrency(orderSummary.productPrice)}
         </p>
-
-        {/* Quantity Controls */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => handleQuantityChange(-1)}
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
-          >
-            <span className="text-lg text-text-primary font-medium">−</span>
-          </button>
-          <span className="text-lg font-medium text-text-primary w-8 text-center">
-            {orderSummary.quantity}
-          </span>
-          <button
-            onClick={() => handleQuantityChange(1)}
-            className="w-10 h-10 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
-          >
-            <span className="text-lg text-text-primary font-medium">+</span>
-          </button>
-        </div>
       </div>
 
       {/* Gift Card / Discount */}
@@ -83,14 +87,17 @@ export const OrderSummary: React.FC = () => {
             onChange={(e) => setDiscountCode(e.target.value)}
             className="flex-1 px-4 py-2 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary"
           />
-          <Button variant="secondary" onClick={handleApplyDiscount}>
+          <button
+            onClick={handleApplyDiscount}
+            className="px-6 py-2 bg-transparent border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors font-medium"
+          >
             {t("orderSummary.apply")}
-          </Button>
+          </button>
         </div>
       </div>
 
-      {/* Price Breakdown */}
-      <div className="space-y-3 border-t border-border pt-4">
+      {/* Price Breakdown - No dividers */}
+      <div className="space-y-3 pt-4">
         <div className="flex justify-between text-text-secondary">
           <span>{t("orderSummary.subtotal")}</span>
           <span className="font-medium text-text-primary">
@@ -105,7 +112,7 @@ export const OrderSummary: React.FC = () => {
         </div>
         <div className="flex justify-between text-text-secondary">
           <span>{t("orderSummary.shipping")}</span>
-          <span className="font-medium text-success">
+          <span className="font-medium text-primary">
             {orderSummary.shipping === 0
               ? t("orderSummary.free")
               : formatCurrency(orderSummary.shipping)}
