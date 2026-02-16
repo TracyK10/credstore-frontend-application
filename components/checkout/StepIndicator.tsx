@@ -32,10 +32,8 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
             <div className="px-4">
               <span
                 className={`text-lg font-semibold whitespace-nowrap ${
-                  step.number === currentStep
+                  step.number <= currentStep
                     ? "text-[#3182CE]"
-                    : step.number < currentStep
-                    ? "text-text-primary"
                     : "text-text-secondary"
                 }`}
               >
