@@ -112,7 +112,7 @@ export const OrderSummary: React.FC = () => {
         </div>
         <div className="flex justify-between text-text-secondary">
           <span>{t("orderSummary.shipping")}</span>
-          <span className="font-medium text-primary">
+          <span className="font-medium text-[#38B2AC]">
             {orderSummary.shipping === 0
               ? t("orderSummary.free")
               : formatCurrency(orderSummary.shipping)}
