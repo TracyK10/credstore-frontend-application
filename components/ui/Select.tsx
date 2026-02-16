@@ -34,19 +34,11 @@ export const Select: React.FC<SelectProps> = ({
         ))}
       </select>
       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-        <svg
-          className="w-4 h-4 text-text-secondary"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
+        <img 
+          src="/arrow-down-s-fill.svg" 
+          alt="dropdown"
+          className="w-4 h-4 opacity-60"
+        />
       </div>
     </div>
   );
