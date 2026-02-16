@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-text-primary">dummy.</span>
+            <span className="text-2xl font-black text-text-primary" style={{ fontWeight: 950, letterSpacing: '-0.02em' }}>dummy.</span>
           </Link>
 
           {/* Navigation */}

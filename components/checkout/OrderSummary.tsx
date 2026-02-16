@@ -54,7 +54,7 @@ export const OrderSummary: React.FC = () => {
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={() => handleQuantityChange(-1)}
-              className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
+              className="w-8 h-8 rounded-md bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
             >
               <span className="text-base text-text-primary font-medium">−</span>
             </button>
@@ -63,7 +63,7 @@ export const OrderSummary: React.FC = () => {
             </span>
             <button
               onClick={() => handleQuantityChange(1)}
-              className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
+              className="w-8 h-8 rounded-md bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
             >
               <span className="text-base text-text-primary font-medium">+</span>
             </button>
