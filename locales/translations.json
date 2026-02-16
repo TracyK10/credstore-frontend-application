@@ -1,0 +1,114 @@
+{
+  "en": {
+    "account": {
+      "title": "Account details",
+      "email": "Email address",
+      "password": "Password",
+      "register": "Register for account",
+      "login": "Login",
+      "nextButton": "Shipping details"
+    },
+    "shipping": {
+      "title": "Shipping details",
+      "savedAddress": "Use saved address",
+      "firstLine": "First line of address",
+      "streetName": "Street name",
+      "postcode": "Postcode",
+      "selectShipping": "Select shipping",
+      "freeDelivery": "Free delivery",
+      "nextButton": "Payment"
+    },
+    "payment": {
+      "title": "Payment Details",
+      "savedCard": "Use saved card",
+      "nameOnCard": "Name on card",
+      "cardNumber": "Card number",
+      "expiration": "Expiration",
+      "cvc": "CVC",
+      "completeButton": "Complete order"
+    },
+    "orderSummary": {
+      "title": "Order Summary",
+      "giftCard": "Gift Card / Discount code",
+      "apply": "Apply",
+      "subtotal": "Sub total",
+      "tax": "Tax",
+      "shipping": "Shipping",
+      "total": "Total",
+      "free": "Free"
+    },
+    "navigation": {
+      "home": "Home",
+      "shop": "Shop",
+      "contact": "Contact",
+      "help": "Help",
+      "account": "Account",
+      "items": "items"
+    },
+    "common": {
+      "cancelOrder": "Cancel order",
+      "currency": "£"
+    },
+    "steps": {
+      "account": "Account",
+      "shipping": "Shipping",
+      "payment": "Payment"
+    }
+  },
+  "sw": {
+    "account": {
+      "title": "Maelezo ya akaunti",
+      "email": "Barua pepe",
+      "password": "Nywila",
+      "register": "Sajili akaunti",
+      "login": "Ingia",
+      "nextButton": "Maelezo ya usafirishaji"
+    },
+    "shipping": {
+      "title": "Maelezo ya usafirishaji",
+      "savedAddress": "Tumia anwani iliyohifadhiwa",
+      "firstLine": "Mstari wa kwanza wa anwani",
+      "streetName": "Jina la mtaa",
+      "postcode": "Msimbo wa posta",
+      "selectShipping": "Chagua usafirishaji",
+      "freeDelivery": "Usafirishaji wa bure",
+      "nextButton": "Malipo"
+    },
+    "payment": {
+      "title": "Maelezo ya Malipo",
+      "savedCard": "Tumia kadi iliyohifadhiwa",
+      "nameOnCard": "Jina kwenye kadi",
+      "cardNumber": "Nambari ya kadi",
+      "expiration": "Muda wa kumalizika",
+      "cvc": "CVC",
+      "completeButton": "Kamilisha agizo"
+    },
+    "orderSummary": {
+      "title": "Muhtasari wa Agizo",
+      "giftCard": "Kadi ya zawadi / Msimbo wa punguzo",
+      "apply": "Tumia",
+      "subtotal": "Jumla ndogo",
+      "tax": "Kodi",
+      "shipping": "Usafirishaji",
+      "total": "Jumla",
+      "free": "Bure"
+    },
+    "navigation": {
+      "home": "Nyumbani",
+      "shop": "Duka",
+      "contact": "Wasiliana",
+      "help": "Msaada",
+      "account": "Akaunti",
+      "items": "vitu"
+    },
+    "common": {
+      "cancelOrder": "Ghairi agizo",
+      "currency": "KSh"
+    },
+    "steps": {
+      "account": "Akaunti",
+      "shipping": "Usafirishaji",
+      "payment": "Malipo"
+    }
+  }
+}
