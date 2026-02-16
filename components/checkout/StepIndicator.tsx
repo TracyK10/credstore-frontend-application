@@ -16,60 +16,77 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
     { number: 3, label: t("steps.payment") },
   ];
 
+  // Helper to determine if a transition node should be completed
+  const isNodeCompleted = (nodeIndex: number) => {
+    // Node 0 (after Account) is completed when currentStep > 1
+    // Node 1 (after Shipping) is completed when currentStep > 2
+    return currentStep > nodeIndex + 1;
+  };
+
   return (
-    <div className="flex items-center justify-center gap-0 mb-8">
-      {steps.map((step, index) => (
-        <React.Fragment key={step.number}>
-          <div className="flex flex-col items-center gap-2">
-            {/* Step circle - positioned as node between lines */}
-            <div
-              className={`flex items-center justify-center w-7 h-7 rounded-full border-2 transition-all ${
-                step.number < currentStep
-                  ? "bg-black border-black"
-                  : step.number === currentStep
-                  ? "bg-transparent border-[#3182CE]"
-                  : "bg-transparent border-gray-300"
-              }`}
-            >
-              {step.number < currentStep ? (
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : null}
+    <div className="mb-8">
+      <div className="flex items-center justify-center">
+        {steps.map((step, stepIndex) => (
+          <React.Fragment key={step.number}>
+            {/* Step Label */}
+            <div className="px-3">
+              <span
+                className={`text-sm font-medium whitespace-nowrap ${
+                  step.number === currentStep
+                    ? "text-[#3182CE]"
+                    : step.number < currentStep
+                    ? "text-text-primary"
+                    : "text-text-secondary"
+                }`}
+              >
+                {step.label}
+              </span>
             </div>
 
-            {/* Step label */}
-            <span
-              className={`text-sm font-medium whitespace-nowrap ${
-                step.number === currentStep
-                  ? "text-[#3182CE]"
-                  : step.number < currentStep
-                  ? "text-text-primary"
-                  : "text-text-secondary"
-              }`}
-            >
-              {step.label}
-            </span>
-          </div>
+            {/* Connector Line + Node (if not last step) */}
+            {stepIndex < steps.length - 1 && (
+              <>
+                {/* Line before node */}
+                <div
+                  className={`h-0.5 w-8 transition-all ${
+                    isNodeCompleted(stepIndex) ? "bg-[#3182CE]" : "bg-gray-300"
+                  }`}
+                />
 
-          {/* Connecting line - between circles */}
-          {index < steps.length - 1 && (
-            <div
-              className={`h-0.5 w-16 mb-7 transition-all ${
-                step.number < currentStep ? "bg-[#3182CE]" : "bg-gray-300"
-              }`}
-            />
-          )}
-        </React.Fragment>
-      ))}
+                {/* Tick Node - Always visible with spacing */}
+                <div
+                  className={`flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all mx-2 ${
+                    isNodeCompleted(stepIndex)
+                      ? "bg-black border-black"
+                      : "bg-transparent border-gray-300"
+                  }`}
+                >
+                  {isNodeCompleted(stepIndex) && (
+                    <svg
+                      className="w-3.5 h-3.5 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
+                </div>
+
+                {/* Line after node */}
+                <div
+                  className={`h-0.5 w-8 transition-all ${
+                    isNodeCompleted(stepIndex) ? "bg-[#3182CE]" : "bg-gray-300"
+                  }`}
+                />
+              </>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 };
