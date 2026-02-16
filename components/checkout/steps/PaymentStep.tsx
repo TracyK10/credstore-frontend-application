@@ -84,9 +84,19 @@ export const PaymentStep: React.FC = () => {
   }, [cvc]);
 
   const handleCardNumberChange = (value: string) => {
-    // Only allow numeric characters
+    // Remove all non-numeric characters
     const numericValue = value.replace(/\D/g, "");
-    setCardNumber(numericValue);
+    
+    // Format as "123 - 456 - 789 - 012"
+    let formatted = "";
+    for (let i = 0; i < numericValue.length; i++) {
+      if (i > 0 && i % 3 === 0) {
+        formatted += " - ";
+      }
+      formatted += numericValue[i];
+    }
+    
+    setCardNumber(formatted);
   };
 
   const handleMonthChange = (value: string) => {
@@ -212,7 +222,7 @@ export const PaymentStep: React.FC = () => {
               onChange={(e) => handleMonthChange(e.target.value)}
               placeholder="03"
               maxLength={2}
-              className="w-20 px-4 py-3 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary text-center"
+              className="w-20 px-4 py-3 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none text-center"
             />
             <span className="text-text-secondary text-xl">/</span>
             <input
@@ -221,7 +231,7 @@ export const PaymentStep: React.FC = () => {
               onChange={(e) => handleYearChange(e.target.value)}
               placeholder="24"
               maxLength={2}
-              className="w-20 px-4 py-3 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary text-center"
+              className="w-20 px-4 py-3 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none text-center"
             />
           </div>
           {(monthError || yearError) && (
@@ -254,7 +264,7 @@ export const PaymentStep: React.FC = () => {
             onChange={(e) => handleCvcChange(e.target.value)}
             placeholder="123"
             maxLength={4}
-            className="w-full px-4 py-3 bg-input-bg border border-input-border rounded-lg text-input-text focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-4 py-3 bg-[#E2E8F0] rounded-md text-input-text outline-none focus:outline-none"
           />
           {cvcError && <p className="text-red-500 text-sm mt-1">{cvcError}</p>}
         </div>
