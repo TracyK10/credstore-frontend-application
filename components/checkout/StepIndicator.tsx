@@ -29,9 +29,9 @@ export const StepIndicator: React.FC<StepIndicatorProps> = ({ currentStep }) => 
         {steps.map((step, stepIndex) => (
           <React.Fragment key={step.number}>
             {/* Step Label */}
-            <div className="px-3">
+            <div className="px-4">
               <span
-                className={`text-sm font-medium whitespace-nowrap ${
+                className={`text-lg font-semibold whitespace-nowrap ${
                   step.number === currentStep
                     ? "text-[#3182CE]"
                     : step.number < currentStep
