@@ -28,7 +28,7 @@ export const OrderSummary: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg h-fit sticky top-6">
+    <div className="bg-[#F8F9FA] p-6 rounded-lg sticky top-6">
       <h2 className="text-xl font-semibold text-text-primary mb-6">
         {t("orderSummary.title")}
       </h2>

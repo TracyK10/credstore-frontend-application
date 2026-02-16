@@ -47,7 +47,7 @@ export const AccountStep: React.FC = () => {
   const isFormValid = emailValid && passwordValid;
 
   return (
-    <div>
+    <div className="bg-[#F7FAFC] p-8 rounded-lg">
       <h2 className="text-2xl font-semibold text-text-primary mb-6">
         {t("account.title")}
       </h2>
@@ -72,7 +72,7 @@ export const AccountStep: React.FC = () => {
         placeholder="••••••••"
       />
 
-      <div className="flex items-center justify-between mt-6">
+      <div className="flex items-center justify-end gap-4 mt-6">
         <button className="text-text-secondary hover:text-primary transition-colors">
           {t("account.register")}
         </button>
@@ -82,7 +82,7 @@ export const AccountStep: React.FC = () => {
         </Button>
       </div>
 
-      <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
+      <div className="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-gray-200">
         <button 
           onClick={() => {}}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
