@@ -45,13 +45,13 @@ export const OrderSummary: React.FC = () => {
       {/* Product Details */}
       <div className="mb-4">
         {/* Product Name and Quantity on Same Line */}
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-lg font-medium text-text-primary">
+        <div className="flex items-center justify-between gap-4 mb-3">
+          <h3 className="text-base font-medium text-text-primary flex-1 min-w-0">
             {orderSummary.productName}
           </h3>
           
           {/* Quantity Controls */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={() => handleQuantityChange(-1)}
               className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 border-0 flex items-center justify-center transition-colors"
