@@ -135,7 +135,7 @@ export const ShippingStep: React.FC = () => {
         />
       </div>
 
-      <div className="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-gray-200">
+      <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
           onClick={() => setCurrentStep(1)}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
