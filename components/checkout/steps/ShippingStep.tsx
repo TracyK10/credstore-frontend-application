@@ -94,6 +94,7 @@ export const ShippingStep: React.FC = () => {
           { value: "", label: "Select address" },
           { value: "electric", label: "123 , Electric avenue" },
         ]}
+        horizontal={true}
       />
 
       <ValidatedInput

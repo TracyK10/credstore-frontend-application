@@ -179,6 +179,7 @@ export const PaymentStep: React.FC = () => {
           { value: "", label: "Select card" },
           { value: "mastercard", label: "Mastercard ending 234" },
         ]}
+        horizontal={true}
       />
 
       <ValidatedInput
