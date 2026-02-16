@@ -121,10 +121,10 @@ export const OrderSummary: React.FC = () => {
         
         {/* Total - No divider */}
         <div className="flex justify-between items-center pt-2">
-          <span className="text-lg font-semibold text-text-primary">
+          <span className="text-base font-semibold text-text-primary">
             {t("orderSummary.total")}
           </span>
-          <span className="text-2xl font-bold text-text-primary">
+          <span className="text-base font-bold text-text-primary">
             {formatCurrency(orderSummary.total)}
           </span>
         </div>
