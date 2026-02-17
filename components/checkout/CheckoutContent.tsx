@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
 import { CheckoutLayout } from "@/components/layout/CheckoutLayout";
@@ -11,11 +11,12 @@ import { ShippingStep } from "@/components/checkout/steps/ShippingStep";
 import { PaymentStep } from "@/components/checkout/steps/PaymentStep";
 
 export function CheckoutContent() {
-  const { currentStep, setCurrentStep, resetCheckout, accountData } = useCheckout();
+  const { currentStep, setCurrentStep, accountData } = useCheckout();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const isInitialMount = useRef(true);
 
-  // Sync URL with current step
+  // Single useEffect: Handle ONLY browser history changes and initial mount
   useEffect(() => {
     const stepParam = searchParams.get("step");
     const stepMap: Record<string, 1 | 2 | 3> = {
@@ -24,33 +25,32 @@ export function CheckoutContent() {
       payment: 3,
     };
 
-    if (stepParam && stepParam in stepMap) {
-      const newStep = stepMap[stepParam];
-      
-      // Routing guard: prevent jumping ahead without completing account
-      if (newStep > 1 && !accountData.email) {
+    // Default to account if no step param
+    if (!stepParam || !(stepParam in stepMap)) {
+      if (isInitialMount.current) {
         router.replace("/checkout?step=account");
-        setCurrentStep(1);
-      } else if (newStep !== currentStep) {
-        setCurrentStep(newStep);
+        isInitialMount.current = false;
       }
-    } else {
-      // Default to account step if no valid step param
+      return;
+    }
+
+    const urlStep = stepMap[stepParam];
+    
+    // Routing guard: prevent jumping ahead without completing account
+    if (urlStep > 1 && !accountData.email) {
       router.replace("/checkout?step=account");
       setCurrentStep(1);
+      return;
     }
-  }, [searchParams, accountData.email, currentStep, router, setCurrentStep]);
 
-  // Update URL when step changes programmatically
-  useEffect(() => {
-    const stepNames = ["account", "shipping", "payment"];
-    const currentStepName = stepNames[currentStep - 1];
-    const stepParam = searchParams.get("step");
-    
-    if (stepParam !== currentStepName) {
-      router.push(`/checkout?step=${currentStepName}`, { scroll: false });
+    // Only update state if URL step differs from current step
+    // This handles browser back/forward navigation
+    if (urlStep !== currentStep) {
+      setCurrentStep(urlStep);
     }
-  }, [currentStep, searchParams, router]);
+
+    isInitialMount.current = false;
+  }, [searchParams]); // Only depend on searchParams to avoid circular updates
 
   const renderStep = () => {
     switch (currentStep) {

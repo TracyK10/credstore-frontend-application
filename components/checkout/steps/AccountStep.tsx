@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { ValidatedInput } from "@/components/ui/ValidatedInput";
@@ -9,6 +10,7 @@ import { validateEmail, validatePassword } from "@/lib/validation";
 
 export const AccountStep: React.FC = () => {
   const { accountData, updateAccountData, setCurrentStep } = useCheckout();
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [email, setEmail] = useState(accountData.email);
@@ -40,8 +42,8 @@ export const AccountStep: React.FC = () => {
     // Save to context
     updateAccountData({ email, password });
     
-    // Move to next step
-    setCurrentStep(2);
+    // Navigate to shipping - this will update both state and URL
+    router.push("/checkout?step=shipping", { scroll: false });
   };
 
   const isFormValid = emailValid && passwordValid;

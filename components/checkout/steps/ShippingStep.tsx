@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { ValidatedInput } from "@/components/ui/ValidatedInput";
@@ -9,7 +10,8 @@ import { Button } from "@/components/ui/Button";
 import { validateRequired, validatePostcode } from "@/lib/validation";
 
 export const ShippingStep: React.FC = () => {
-  const { shippingData, updateShippingData, prevStep, nextStep } = useCheckout();
+  const { shippingData, updateShippingData } = useCheckout();
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [savedAddress, setSavedAddress] = useState(shippingData.savedAddress);
@@ -65,17 +67,11 @@ export const ShippingStep: React.FC = () => {
   };
 
   const handleNext = async () => {
-    // Save to context
-    updateShippingData({
-      savedAddress,
-      firstLine,
-      streetName,
-      postcode,
-      shippingMethod,
-    });
+    // Save shipping data to context
+    updateShippingData({ savedAddress, firstLine, streetName, postcode, shippingMethod });
     
-    // Move to next step
-    nextStep();
+    // Navigate to payment
+    router.push("/checkout?step=payment", { scroll: false });
   };
 
   const isFormValid = firstLineValid && streetNameValid && postcodeValid;
@@ -138,7 +134,7 @@ export const ShippingStep: React.FC = () => {
 
       <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
-          onClick={prevStep}
+          onClick={() => router.push("/checkout?step=account", { scroll: false })}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
         >
           Cancel order

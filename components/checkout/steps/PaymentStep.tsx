@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { useCheckout } from "@/context/CheckoutContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { ValidatedInput } from "@/components/ui/ValidatedInput";
@@ -15,7 +16,8 @@ import {
 } from "@/lib/validation";
 
 export const PaymentStep: React.FC = () => {
-  const { paymentData, updatePaymentData, prevStep, resetCheckout } = useCheckout();
+  const { paymentData, updatePaymentData, resetCheckout } = useCheckout();
+  const router = useRouter();
   const { t } = useTranslation();
 
   const [savedCard, setSavedCard] = useState(paymentData.savedCard);
@@ -278,7 +280,7 @@ export const PaymentStep: React.FC = () => {
 
       <div className="flex items-center justify-end gap-6 mt-8 pt-6 border-t border-gray-200">
         <button 
-          onClick={prevStep}
+          onClick={() => router.push("/checkout?step=shipping", { scroll: false })}
           className="text-gray-600 hover:text-gray-800 transition-colors font-normal"
         >
           Cancel order

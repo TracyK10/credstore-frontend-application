@@ -52,18 +52,32 @@ export const CheckoutProvider = ({ children }: { children: ReactNode }) => {
     setState((prev) => ({ ...prev, currentStep: step }));
   };
 
-  const nextStep = () => {
-    setState((prev) => ({
-      ...prev,
-      currentStep: Math.min(3, prev.currentStep + 1) as 1 | 2 | 3,
-    }));
+  const nextStep = (router?: any) => {
+    setState((prev) => {
+      const newStep = Math.min(3, prev.currentStep + 1) as 1 | 2 | 3;
+      
+      // Update URL if router provided
+      if (router) {
+        const stepNames = ["account", "shipping", "payment"];
+        router.push(`/checkout?step=${stepNames[newStep - 1]}`, { scroll: false });
+      }
+      
+      return { ...prev, currentStep: newStep };
+    });
   };
 
-  const prevStep = () => {
-    setState((prev) => ({
-      ...prev,
-      currentStep: Math.max(1, prev.currentStep - 1) as 1 | 2 | 3,
-    }));
+  const prevStep = (router?: any) => {
+    setState((prev) => {
+      const newStep = Math.max(1, prev.currentStep - 1) as 1 | 2 | 3;
+      
+      // Update URL if router provided
+      if (router) {
+        const stepNames = ["account", "shipping", "payment"];
+        router.push(`/checkout?step=${stepNames[newStep - 1]}`, { scroll: false });
+      }
+      
+      return { ...prev, currentStep: newStep };
+    });
   };
 
   const updateAccountData = (data: Partial<AccountData>) => {
